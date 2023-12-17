@@ -1,0 +1,37 @@
+<ion-content padding>
+  <form [formGroup]="updateAnnounceForm" (ngSubmit)="updateForm()">
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input type="text" name="title" formControlName="title" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Announcement Body</ion-label>
+      <ion-textarea name="announceBody" formControlName="announceBody" rows="4" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Category</ion-label>
+      <ion-select name="category" formControlName="category" required>
+        <ion-select-option value="politics">Politics</ion-select-option>
+        <ion-select-option value="fashion">Fashion</ion-select-option>
+        <ion-select-option value="sports">Sports</ion-select-option>
+        <ion-select-option value="culture">Culture</ion-select-option>
+        <ion-select-option value="health">Health</ion-select-option>
+        <ion-select-option value="education">Education</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cover Image</ion-label>
+      <input type="file" accept="image/*" (change)="onCoverImageSelected($event)" />
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Other Images</ion-label>
+      <input type="file" accept="image/*" (change)="onOtherImagesSelected($event)" multiple />
+    </ion-item>
+
+
+    <ion-button expand="full" type="submit">Submit</ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <!-- Header with toolbar and navigation buttons -->
+  <ion-toolbar>
+    <ion-title>dashboard</ion-title>
+    <!-- Navigation buttons -->
+    <ion-buttons slot="end">
+      <!-- Button to navigate to create page -->
+      <ion-button routerLink="/create">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+      <!-- Button to trigger logout -->
+      <ion-button type="submit" (click)="authService.SignOut()" expand="block">
+        Logout
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- List of announcements -->
+  <ion-list class="ios list-ios hydrated">
+    <ion-list-header class="ios hydrated">
+      Announces
+    </ion-list-header>
+    <!-- Iterate through each announcement -->
+    <ion-item *ngFor="let announce of Announce" class="user-list">
+      <ion-label>
+        <!-- Display cover image -->
+        <img width="200px" height="150px" src="{{announce.coverImage}}" alt="Cover Image">
+
+        <!-- Announcement details -->
+        <h5>
+          <ion-icon name="title"></ion-icon> {{announce.title}}
+        </h5>
+        <p>
+          {{announce.announceBody}}
+        </p>
+        <p>
+          {{announce.category}}
+        </p>
+        <p>
+          likes: {{announce.likes}}
+        </p>
+
+        <!-- Display other images if available -->
+        <ion-list *ngIf="announce.otherImages && announce.otherImages.length">
+          <!-- Iterate through other images -->
+          <ion-item *ngFor="let image of announce.otherImages">
+            <ion-avatar slot="start">
+              <!-- Display other images -->
+              <img src="{{image}}" width="200px" height="150px" alt="Other Image">
+            </ion-avatar>
+          </ion-item>
+        </ion-list>
+      </ion-label>
+
+      <!-- Buttons for actions (edit and delete) -->
+      <div class="item-note" item-end>
+        <!-- Button to navigate to detail page -->
+        <button ion-button clear [routerLink]="['/detail/', announce.aid]">
+          <ion-icon name="create" style="zoom:2.0"></ion-icon>
+        </button>
+        <!-- Button to delete announcement -->
+        <button ion-button clear (click)="deleteAnounce(announce.aid)">
+          <ion-icon name="trash" style="zoom:2.0"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

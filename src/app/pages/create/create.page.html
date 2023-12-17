@@ -1,0 +1,44 @@
+<ion-content padding>
+  <!-- Form for creating an announcement -->
+  <form [formGroup]="createAnnounceForm" (ngSubmit)="formSubmit()">
+    <!-- Input for Title -->
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input type="text" name="title" formControlName="title" required></ion-input>
+    </ion-item>
+
+    <!-- Textarea for Announcement Body -->
+    <ion-item>
+      <ion-label position="floating">Announcement Body</ion-label>
+      <ion-textarea name="announceBody" formControlName="announceBody" rows="4" required></ion-textarea>
+    </ion-item>
+
+    <!-- Select for Category -->
+    <ion-item>
+      <ion-label>Category</ion-label>
+      <ion-select name="category" formControlName="category" required>
+        <ion-select-option value="politics">Politics</ion-select-option>
+        <ion-select-option value="fashion">Fashion</ion-select-option>
+        <ion-select-option value="sports">Sports</ion-select-option>
+        <ion-select-option value="culture">Culture</ion-select-option>
+        <ion-select-option value="health">Health</ion-select-option>
+        <ion-select-option value="education">Education</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Input for Cover Image -->
+    <ion-item>
+      <ion-label>Cover Image</ion-label>
+      <input type="file" accept="image/*" (change)="onCoverImageSelected($event)" />
+    </ion-item>
+
+    <!-- Input for Other Images (multiple selection) -->
+    <ion-item>
+      <ion-label>Other Images</ion-label>
+      <input type="file" accept="image/*" (change)="onOtherImagesSelected($event)" multiple />
+    </ion-item>
+
+    <!-- Submit button -->
+    <ion-button expand="full" type="submit">Submit</ion-button>
+  </form>
+</ion-content>
